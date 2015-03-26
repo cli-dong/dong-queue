@@ -15,9 +15,12 @@ npm install -g dong-queue
 ```bash
 var queue = new Queue()
 
-queue.use(function(){})
+// use function
+queue.use(function([arg1, arg2, ...]){})
 
-queue.use([function(){}, ...])
+// use functions
+queue.use([function([arg1, arg2, ...]){}, ...])
 
-queue.run(callback)
+// dynamically pass arguments to queue members
+queue.run([arg1, arg2, ... ], [callback])
 ```
