@@ -34,7 +34,7 @@ Queue.prototype.run = function() {
     if (fn) {
       fn.apply(null, args.concat(next))
     } else if (cb) {
-      cb()
+      cb.apply(null, args)
     }
 
   })()

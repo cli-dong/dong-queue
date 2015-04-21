@@ -28,5 +28,7 @@ queue.use([function([arg1, arg2, ...], next){
 }, ...])
 
 // dynamically pass arguments to queue members
-queue.run([arg1, arg2, ... ], [callback])
+queue.run([arg1, arg2, ... ], [function([arg1, arg2, ... ]) {
+
+}])
 ```
