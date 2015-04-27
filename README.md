@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install -g dong-queue
+npm install --save dong-queue
 ```
 
 ## Usage
