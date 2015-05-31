@@ -5,7 +5,7 @@
 var expect = require('expect.js')
 var Queue = require('../index.js')
 
-describe('normal', function() {
+describe('run', function() {
 
   var queue
   var i
@@ -77,6 +77,192 @@ describe('normal', function() {
     })
 
     expect(i).to.be(3)
+  })
+
+  afterEach(function() {
+    queue = null
+  })
+
+})
+
+describe('any', function() {
+
+  var queue
+
+  beforeEach(function() {
+    queue = new Queue()
+  })
+
+  it('with async', function(done) {
+    var i = 0
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 1
+        next()
+      }, 10)
+    })
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 2
+        next()
+      }, 10)
+    })
+
+    queue.any(function() {
+      expect(i).to.be(1)
+      done()
+    })
+  })
+
+  it('with async, later first', function(done) {
+    var i = 0
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 1
+        next()
+      }, 30)
+    })
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 2
+        next()
+      }, 10)
+    })
+
+    setTimeout(function() {
+      expect(i).to.be(2)
+    }, 20)
+
+    queue.any(function() {
+      expect(i).to.be(2)
+      done()
+    })
+  })
+
+  it('without callback', function(done) {
+    var i = 0
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 1
+        next()
+      }, 10)
+    })
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 2
+        next()
+      }, 30)
+    })
+
+    queue.any()
+
+    setTimeout(function() {
+      expect(i).to.be(1)
+    }, 20)
+
+    setTimeout(function() {
+      expect(i).to.be(3)
+      done()
+    }, 40)
+  })
+
+  afterEach(function() {
+    queue = null
+  })
+
+})
+
+describe('all', function() {
+
+  var queue
+
+  beforeEach(function() {
+    queue = new Queue()
+  })
+
+  it('with async', function(done) {
+    var i = 0
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 1
+        next()
+      }, 10)
+    })
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 2
+        next()
+      }, 10)
+    })
+
+    queue.all(function() {
+      expect(i).to.be(3)
+      done()
+    })
+  })
+
+  it('with async, later first', function(done) {
+    var i = 0
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 1
+        next()
+      }, 30)
+    })
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 2
+        next()
+      }, 10)
+    })
+
+    setTimeout(function() {
+      expect(i).to.be(2)
+    }, 20)
+
+    queue.all(function() {
+      expect(i).to.be(3)
+      done()
+    })
+  })
+
+  it('without callback', function(done) {
+    var i = 0
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 1
+        next()
+      }, 10)
+    })
+
+    queue.use(function(next) {
+      setTimeout(function() {
+        i += 2
+        next()
+      }, 30)
+    })
+
+    queue.all()
+
+    setTimeout(function() {
+      expect(i).to.be(1)
+    }, 20)
+
+    setTimeout(function() {
+      expect(i).to.be(3)
+      done()
+    }, 40)
   })
 
   afterEach(function() {

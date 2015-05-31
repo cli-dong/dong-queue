@@ -1,10 +1,10 @@
 {
   "name": "dong-queue",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "simple async queue runner",
   "main": "index.js",
   "scripts": {
-    "debug": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -u exports -R spec -w",
+    "debug": "./node_modules/.bin/mocha -w",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -u exports -R spec"
   },
   "repository": {

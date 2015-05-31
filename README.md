@@ -4,7 +4,7 @@
 [![Build Status](https://img.shields.io/travis/crossjs/dong-queue.svg?style=flat-square
 )](https://travis-ci.org/crossjs/dong-queue)
 
-> simple async queue runner
+> simple (a)sync queue runner
 
 ## Install
 
@@ -13,6 +13,10 @@ npm install --save dong-queue
 ```
 
 ## Usage
+
+### run
+
+synchronous. run queue member step by step (one invokes by previous one with `next`).
 
 ```js
 var queue = new Queue()
@@ -30,7 +34,15 @@ queue.use([function([arg1, arg2, ...], next){
 }, ...])
 
 // dynamically pass arguments to queue members
-queue.run([arg1, arg2, ... ], [function([arg1, arg2, ... ]) {
-
+queue.run([arg1, arg2, ... ], [function callback([arg1, arg2, ... ]) {
+  // do some callbacks
 }])
 ```
+
+### any
+
+asynchronous. if any member of the queue is finished, call the callback.
+
+### all
+
+asynchronous. if all members of the queue is finished, call the callback.
