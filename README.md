@@ -1,7 +1,8 @@
 # dong-queue
 
 [![NPM version](https://img.shields.io/npm/v/dong-queue.svg?style=flat-square)](https://npmjs.org/package/dong-queue)
-[![Build Status](https://drone.io/github.com/crossjs/dong-queue/status.png)](https://drone.io/github.com/crossjs/dong-queue/latest)
+[![Build Status](https://img.shields.io/travis/crossjs/dong-queue.svg?style=flat-square
+)](https://travis-ci.org/crossjs/dong-queue)
 
 > simple async queue runner
 
