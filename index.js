@@ -1,6 +1,6 @@
 /**
- * @module: dong-queue
- * @author: crossjs <liwenfu@crossjs.com> - 2015-03-08 23:04:31
+ * @module Queue
+ * @author crossjs <liwenfu@crossjs.com>
  */
 
 'use strict';

@@ -4,16 +4,17 @@
   "description": "simple async queue runner",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "debug": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -u exports -R spec -w",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -u exports -R spec"
   },
   "repository": {
     "type": "git",
     "url": "http://github.com/crossjs/dong-queue"
   },
   "keywords": [
-    "spm", "seajs",
-    "dependencies", "devDependencies",
-    "tree", "queue"
+    "async",
+    "queue",
+    "runner"
   ],
   "author": {
     "name": "crossjs",
@@ -28,5 +29,10 @@
   "bugs": {
     "url": "https://github.com/crossjs/dong-queue/issues"
   },
-  "homepage": "https://github.com/crossjs/dong-queue"
+  "homepage": "https://github.com/crossjs/dong-queue",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "istanbul": "^0.3.14",
+    "mocha": "^2.2.5"
+  }
 }
