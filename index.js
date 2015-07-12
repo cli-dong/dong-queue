@@ -11,6 +11,10 @@ var Queue = function() {
   this.stack = []
 }
 
+Queue.exec = function(fn, args) {
+  fn.apply(null, args)
+}
+
 Queue.prototype.use = function(fn) {
   this.stack = this.stack.concat(fn)
 
@@ -32,7 +36,7 @@ Queue.prototype.run = function() {
     var fn = stack[i++]
 
     if (fn) {
-      fn.apply(null, args.concat(done))
+      Queue.exec(fn, args.concat(done))
     } else if (cb) {
       cb.apply(null, args)
     }
@@ -63,7 +67,7 @@ Queue.prototype.any = function() {
   }
 
   stack.forEach(function(fn) {
-    fn.apply(null, args.concat(done))
+    Queue.exec(fn, args.concat(done))
   })
 }
 
@@ -90,7 +94,7 @@ Queue.prototype.all = function() {
   }
 
   stack.forEach(function(fn) {
-    fn.apply(null, args.concat(done))
+    Queue.exec(fn, args.concat(done))
   })
 }
 
